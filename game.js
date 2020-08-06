@@ -16,16 +16,11 @@ function setup() {
 
 function draw() {
     background(0);
-    for (let line of lines) {
-        line.show();
-    }
-    ball.show();
+    show();
     ball.move();
     if ((ball.y <= 0 && ball.y > -100) || ball.y > height - ball.r) {
         ball.toggleY();
     }
-    paddleLeft.show();
-    paddleRight.show();
     if (keyIsDown(UP_ARROW) && paddleRight.y >= 0) {
         paddleRight.move(true);
     } else if (keyIsDown(DOWN_ARROW) && paddleRight.y <= height - paddleRight.height) {
@@ -46,9 +41,22 @@ function draw() {
     if (ball.x <= 0 || ball.x >= width) {
         ball.restartBall(width / 2, height / 2);
     }
+    drawScore();
+}
+function drawScore() {
     textSize(75);
     text(paddleLeft.score, width / 3, 75);
-    textSize(75);
-    text(paddleRight.score, width - width / 3, 75);
+    text(paddleRight.score, width - width / 3 - 40, 75);
+    textSize(15);
+    text("Por Ismael Reyes Caballero", 10, height - 15);
     fill(255, 255, 255);
+}
+
+function show() {
+    for (let line of lines) {
+        line.show();
+    }
+    paddleLeft.show();
+    paddleRight.show();
+    ball.show();
 }
