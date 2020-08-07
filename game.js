@@ -33,16 +33,21 @@ function draw() {
     }
     paddleLeft.collide(ball);
     paddleRight.collide(ball);
-    if (ball.x <= 0) {
+    scoreLogic();
+}
+
+function scoreLogic() {
+    if (ball.x + ball.r <= 0) {
         paddleRight.score ++;
-    } else if(ball.x >= width) {
+    } else if(ball.x - ball.r >= width) {
         paddleLeft.score ++;
     }
-    if (ball.x <= 0 || ball.x >= width) {
+    if (ball.x + ball.r <= 0 || ball.x - ball.r >= width) {
         ball.restartBall(width / 2, height / 2);
     }
     drawScore();
 }
+
 function drawScore() {
     textSize(75);
     text(paddleLeft.score, width / 3, 75);

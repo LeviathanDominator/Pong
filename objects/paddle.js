@@ -16,8 +16,8 @@ class Paddle {
     }
 
     collide(ball) {
-        if (ball.y + ball.r * 2 >= this.y && ball.y + ball.r * 2 < this.y + this.height) {
-            if (ball.x - ball.r <= this.x && ball.x + ball.r * 2 > this.x + this.width) {
+        if (ball.y - ball.r >= this.y && ball.y + ball.r <= this.y + this.height) {
+            if (ball.x - ball.r <= this.x && ball.x + ball.r > this.x + this.width) {
                 ball.toggleX();
             }
         }
